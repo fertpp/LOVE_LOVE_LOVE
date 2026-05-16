@@ -9,7 +9,10 @@
     body {
       margin: 0;
       min-height: 100vh;
-      background: #0049F7;
+      background-image: url('butterfly.gif');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -24,11 +27,14 @@
       max-width: 500px;
       padding: 24px;
       border-radius: 20px;
+      background: rgba(0, 73, 247, 0.4);
+      backdrop-filter: blur(4px);
     }
     #vibeImage {
       width: 100%;
-      max-height: 300px;
-      object-fit: cover;
+      height: auto;
+      max-height: 80vh;
+      object-fit: contain;
       border-radius: 16px;
       margin-bottom: 18px;
       display: none;
@@ -57,11 +63,21 @@
     "foto6.jpg",
   ];
 
+  // GIFs que alternan de fondo al hacer click
+  const backgrounds = [
+    "butterfly.gif",
+    "descarga.gif",
+  ];
+
   const phraseEl = document.getElementById("phrase");
   const imageEl = document.getElementById("vibeImage");
   let showing = "text";
 
   document.body.addEventListener("click", function() {
+    // cambia el fondo con cada click
+    const bg = backgrounds[Math.floor(Math.random() * backgrounds.length)];
+    document.body.style.backgroundImage = `url('${bg}')`;
+
     if (showing === "text") {
       phraseEl.style.display = "none";
       imageEl.src = images[Math.floor(Math.random() * images.length)];
