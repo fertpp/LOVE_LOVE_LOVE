@@ -59,7 +59,6 @@
   </style>
 </head>
 <body>
-  <audio id="musica" src="Dulcito.mp3" loop></audio>
   <div class="container">
     <img id="vibeImage" src="" alt="vibe image" />
     <h1 id="phrase">¿Recuerdas el día en que nos conocimos?</h1>
@@ -127,7 +126,6 @@
   }
 
   document.body.addEventListener("click", function() {
-    document.getElementById("musica").play();
     const bg = backgrounds[Math.floor(Math.random() * backgrounds.length)];
     document.body.style.backgroundImage = `url('${bg}')`;
     if (showing === "text") {
