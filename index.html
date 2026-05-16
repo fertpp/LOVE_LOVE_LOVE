@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" type="image/png" href="Foto3.jpg">
   <title>unclick+</title>
   <style>
     * { box-sizing: border-box; }
@@ -14,7 +13,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-family: "Tahoma";
+      font-family: Tahoma;
       color: #FFA6E7;
       cursor: pointer;
       padding: 20px;
@@ -26,17 +25,18 @@
       padding: 24px;
       border-radius: 20px;
     }
-    img {
+    #vibeImage {
       width: 100%;
       max-height: 300px;
       object-fit: cover;
       border-radius: 16px;
       margin-bottom: 18px;
+      display: none;
     }
     h1 { font-size: 1.4rem; line-height: 1.4; margin: 0; }
   </style>
 </head>
-<body onclick="changeVibe()">
+<body>
   <div class="container">
     <img id="vibeImage" src="" alt="vibe image" />
     <h1 id="phrase">¿Recuerdas el día en que nos conocimos?</h1>
@@ -44,9 +44,10 @@
 <script>
   const phrases = [
     "Las veces en que nos convertimos en uno solo",
-    "por eso, sigues siendo un imán",
-    "en cualquier lugar en donde estoy, estamos los dos",
+    "Sigues siendo un imán",
+    "En cualquier lugar en donde estoy, estamos los dos",
   ];
+
   const images = [
     "Foto1.jpg",
     "foto2.jpg",
@@ -54,13 +55,13 @@
     "foto4.jpg",
     "foto5.jpg",
     "foto6.jpg",
-    "descarga (1).jpg",
   ];
+
   const phraseEl = document.getElementById("phrase");
-  const imageEl  = document.getElementById("vibeImage");
+  const imageEl = document.getElementById("vibeImage");
   let showing = "text";
-  imageEl.style.display = "none";
-  function changeVibe() {
+
+  document.body.addEventListener("click", function() {
     if (showing === "text") {
       phraseEl.style.display = "none";
       imageEl.src = images[Math.floor(Math.random() * images.length)];
@@ -68,11 +69,12 @@
       showing = "image";
     } else {
       imageEl.style.display = "none";
+      imageEl.src = "";
       phraseEl.textContent = phrases[Math.floor(Math.random() * phrases.length)];
       phraseEl.style.display = "block";
       showing = "text";
     }
-  }
+  });
 </script>
 </body>
 </html>
