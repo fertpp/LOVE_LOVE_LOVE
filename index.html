@@ -59,6 +59,7 @@
   </style>
 </head>
 <body>
+  <audio id="musica" src="Vicente García - Dulcito e Coco (Video Oficial).mp3" loop></audio>
   <div class="container">
     <img id="vibeImage" src="" alt="vibe image" />
     <h1 id="phrase">¿Recuerdas el día en que nos conocimos?</h1>
@@ -99,6 +100,7 @@
   ];
   const phraseEl = document.getElementById("phrase");
   const imageEl  = document.getElementById("vibeImage");
+  const musica   = document.getElementById("musica");
   let showing = "text";
   let lluviaInterval = null;
 
@@ -126,6 +128,7 @@
   }
 
   document.body.addEventListener("click", function() {
+    musica.play();
     const bg = backgrounds[Math.floor(Math.random() * backgrounds.length)];
     document.body.style.backgroundImage = `url('${bg}')`;
     if (showing === "text") {
