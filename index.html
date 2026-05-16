@@ -20,6 +20,7 @@
       color: #F5F5DC;
       cursor: pointer;
       padding: 50px;
+      overflow: hidden;
     }
     .container {
       text-align: center;
@@ -27,6 +28,8 @@
       max-width: 500px;
       padding: 24px;
       border-radius: 20px;
+      position: relative;
+      z-index: 2;
     }
     #vibeImage {
       width: 100%;
@@ -37,6 +40,24 @@
       display: none;
     }
     h1 { font-size: 1.4rem; line-height: 1.4; margin: 0; }
+
+    .palabra {
+      position: fixed;
+      font-family: Tahoma;
+      color: #F5F5DC;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0;
+      animation: aparecer 2.5s ease forwards;
+      white-space: nowrap;
+    }
+
+    @keyframes aparecer {
+      0%   { opacity: 0; transform: scale(0.5); }
+      30%  { opacity: 1; transform: scale(1); }
+      70%  { opacity: 1; }
+      100% { opacity: 0; transform: scale(1.1); }
+    }
   </style>
 </head>
 <body>
@@ -46,9 +67,24 @@
   </div>
 <script>
   const phrases = [
+    "El saborsito a coco que sé que hay en tu mirar",
+    "Nada me hace tanta falta como tú",
+    "Como panal de abejas que da miel",
+    "Ven y quítame este duelo",
+    "Florecita de mi valle",
+    "Ven irradia tus detalles",
+    "Tú eres mi dulce, eres mi bien",
+    "Llévame a la carretera que me lleva a ti",
     "Las veces en que nos convertimos en uno solo",
     "Sigues siendo un imán",
     "En cualquier lugar en donde estoy, estamos los dos",
+    "¿Recuerdas el día en que nos conocimos?",
+  ];
+
+  const palabras = [
+    "dulcito", "coco", "miel", "flor", "valle",
+    "agua", "dulce", "bien", "labios", "mirar",
+    "falta", "amor", "detalle", "irradia",
   ];
 
   const images = [
@@ -59,7 +95,7 @@
     "foto5.jpg",
     "foto6.jpg",
     "foto11.jpg",
-    "foto12.jpg"   
+    "foto12.jpg",
   ];
 
   const backgrounds = [
@@ -68,8 +104,35 @@
   ];
 
   const phraseEl = document.getElementById("phrase");
-  const imageEl = document.getElementById("vibeImage");
+  const imageEl  = document.getElementById("vibeImage");
   let showing = "text";
+  let lluviaInterval = null;
+
+  function palabraAleatoria() {
+    const todo = [...palabras, ...phrases];
+    return todo[Math.floor(Math.random() * todo.length)];
+  }
+
+  function crearPalabra() {
+    const el = document.createElement("span");
+    el.classList.add("palabra");
+    el.textContent = palabraAleatoria();
+    el.style.left = Math.random() * 90 + "vw";
+    el.style.top  = Math.random() * 90 + "vh";
+    el.style.fontSize = (0.7 + Math.random() * 1.2) + "rem";
+    el.style.animationDuration = (1.5 + Math.random() * 2) + "s";
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), 3000);
+  }
+
+  function iniciarLluvia() {
+    lluviaInterval = setInterval(crearPalabra, 180);
+  }
+
+  function detenerLluvia() {
+    clearInterval(lluviaInterval);
+    document.querySelectorAll(".palabra").forEach(p => p.remove());
+  }
 
   document.body.addEventListener("click", function() {
     const bg = backgrounds[Math.floor(Math.random() * backgrounds.length)];
@@ -80,9 +143,11 @@
       imageEl.src = images[Math.floor(Math.random() * images.length)];
       imageEl.style.display = "block";
       showing = "image";
+      iniciarLluvia();
     } else {
       imageEl.style.display = "none";
       imageEl.src = "";
+      detenerLluvia();
       phraseEl.textContent = phrases[Math.floor(Math.random() * phrases.length)];
       phraseEl.style.display = "block";
       showing = "text";
