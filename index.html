@@ -6,7 +6,6 @@
   <title>unclick+</title>
   <style>
     * { box-sizing: border-box; }
-    <audio id="musica" src="Dulcito.mp3" loop></audio>
     body {
       margin: 0;
       min-height: 100vh;
@@ -41,7 +40,6 @@
       display: none;
     }
     h1 { font-size: 1.4rem; line-height: 1.4; margin: 0; }
-
     .palabra {
       position: fixed;
       font-family: Tahoma;
@@ -52,7 +50,6 @@
       animation: aparecer 2.5s ease forwards;
       white-space: nowrap;
     }
-
     @keyframes aparecer {
       0%   { opacity: 0; transform: scale(0.5); }
       30%  { opacity: 1; transform: scale(1); }
@@ -62,6 +59,7 @@
   </style>
 </head>
 <body>
+  <audio id="musica" src="Dulcito.mp3" loop></audio>
   <div class="container">
     <img id="vibeImage" src="" alt="vibe image" />
     <h1 id="phrase">¿Recuerdas el día en que nos conocimos?</h1>
@@ -81,13 +79,11 @@
     "En cualquier lugar en donde estoy, estamos los dos",
     "¿Recuerdas el día en que nos conocimos?",
   ];
-
   const palabras = [
     "dulcito", "coco", "miel", "flor", "valle",
     "agua", "dulce", "bien", "labios", "mirar",
     "falta", "amor", "detalle", "irradia",
   ];
-
   const images = [
     "Foto1.jpg",
     "foto2.jpg",
@@ -98,12 +94,10 @@
     "foto11.jpg",
     "foto12.jpg",
   ];
-
   const backgrounds = [
     "butterfly.gif",
     "descarga.gif",
   ];
-
   const phraseEl = document.getElementById("phrase");
   const imageEl  = document.getElementById("vibeImage");
   let showing = "text";
@@ -113,7 +107,6 @@
     const todo = [...palabras, ...phrases];
     return todo[Math.floor(Math.random() * todo.length)];
   }
-
   function crearPalabra() {
     const el = document.createElement("span");
     el.classList.add("palabra");
@@ -125,20 +118,18 @@
     document.body.appendChild(el);
     setTimeout(() => el.remove(), 3000);
   }
-
   function iniciarLluvia() {
     lluviaInterval = setInterval(crearPalabra, 180);
   }
-
   function detenerLluvia() {
     clearInterval(lluviaInterval);
     document.querySelectorAll(".palabra").forEach(p => p.remove());
   }
 
-  document.body.addEventListener("click", function() {document.getElementById("musica").play();
+  document.body.addEventListener("click", function() {
+    document.getElementById("musica").play();
     const bg = backgrounds[Math.floor(Math.random() * backgrounds.length)];
     document.body.style.backgroundImage = `url('${bg}')`;
-
     if (showing === "text") {
       phraseEl.style.display = "none";
       imageEl.src = images[Math.floor(Math.random() * images.length)];
