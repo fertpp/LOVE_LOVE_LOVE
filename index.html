@@ -3,12 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-   <link rel="icon" type="image/png" href="Foto3.jpg">
+  <link rel="icon" type="image/png" href="Foto3.jpg">
   <title>unclick+</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
     body {
       margin: 0;
       min-height: 100vh;
@@ -17,7 +15,6 @@
       align-items: center;
       justify-content: center;
       font-family: "Tahoma";
-      font-style: normal;
       color: #FFA6E7;
       cursor: pointer;
       padding: 20px;
@@ -28,7 +25,6 @@
       max-width: 500px;
       padding: 24px;
       border-radius: 20px;
-      backdrop-filter: blur(10px);
     }
     img {
       width: 100%;
@@ -37,55 +33,42 @@
       border-radius: 16px;
       margin-bottom: 18px;
     }
-    h1 {
-      font-size: 1.4rem;
-      line-height: 1.4;
-      margin: 0;
-    }
-    p {
-      margin-top: 10px;
-      opacity: 0.6;
-      font-size: 0.8rem;
-    }
+    h1 { font-size: 1.4rem; line-height: 1.4; margin: 0; }
   </style>
 </head>
 <body onclick="changeVibe()">
   <div class="container">
-  <img id="vibeImage" src="1.jpeg" alt="vibe image" />
-  <h1 id="phrase">¿Recuerdas el día en que nos conocimos?</h1>
-</div>
+    <img id="vibeImage" src="" alt="vibe image" />
+    <h1 id="phrase">¿Recuerdas el día en que nos conocimos?</h1>
+  </div>
 <script>
-  //Las veces en que nos convertimos en uno solo; por eso, sigues siendo un imán; por eso, en cualquier lugar en donde estoy, estamos los dos 
-  const phrases = [];
-  agrega tus imágenes(Foto1.jpg) aquí
+  const phrases = [
+    "Las veces en que nos convertimos en uno solo",
+    "por eso, sigues siendo un imán",
+    "en cualquier lugar en donde estoy, estamos los dos",
+  ];
   const images = [
-  "Foto1.jpg",
-  "foto2.jpg",
-  "foto3.jpg",
-  "foto4.jpg",
-  "foto5.jpg",
-  "foto6.jpg",
-  "descarga (1).jpg",
- ];
-  const phraseEl = document.getElementById("jjjjj");
-  const imageEl = document.getElementById("Foto1.jpg");
-  // ESTADO INICIAL ESTÁ MOSTRANDO EL TEXTO
+    "Foto1.jpg",
+    "foto2.jpg",
+    "foto3.jpg",
+    "foto4.jpg",
+    "foto5.jpg",
+    "foto6.jpg",
+    "descarga (1).jpg",
+  ];
+  const phraseEl = document.getElementById("phrase");
+  const imageEl  = document.getElementById("vibeImage");
   let showing = "text";
   imageEl.style.display = "none";
   function changeVibe() {
     if (showing === "text") {
-      // ocultar el texto
       phraseEl.style.display = "none";
-      // mostrar imagen
       imageEl.src = images[Math.floor(Math.random() * images.length)];
       imageEl.style.display = "block";
       showing = "image";
     } else {
-      // ocultar imagen
       imageEl.style.display = "none";
-      // mostrar texto
-      phraseEl.textContent =
-        phrases[Math.floor(Math.random() * phrases.length)];
+      phraseEl.textContent = phrases[Math.floor(Math.random() * phrases.length)];
       phraseEl.style.display = "block";
       showing = "text";
     }
@@ -93,4 +76,3 @@
 </script>
 </body>
 </html>
-
