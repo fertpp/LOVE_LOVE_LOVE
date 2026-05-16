@@ -6,6 +6,7 @@
   <title>unclick+</title>
   <style>
     * { box-sizing: border-box; }
+    <audio id="musica" src="Dulcito.mp3" loop></audio>
     body {
       margin: 0;
       min-height: 100vh;
@@ -134,7 +135,7 @@
     document.querySelectorAll(".palabra").forEach(p => p.remove());
   }
 
-  document.body.addEventListener("click", function() {
+  document.body.addEventListener("click", function() {document.getElementById("musica").play();
     const bg = backgrounds[Math.floor(Math.random() * backgrounds.length)];
     document.body.style.backgroundImage = `url('${bg}')`;
 
